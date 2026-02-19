@@ -1,0 +1,18 @@
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.0 --adjustment_coefficient 0.25 --lambda_u 30
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.2 --adjustment_coefficient 0.25 --lambda_u 30
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.5 --adjustment_coefficient 0.25 --lambda_u 30
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.8 --adjustment_coefficient 0.25 --lambda_u 30
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.0 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.2 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.5 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.8 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'sym' --r 0.9 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'asym' --r 0.1 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar10 --num_class 10 --noise_mode 'asym' --r 0.3 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'sym' --r 0.0 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'sym' --r 0.2 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'sym' --r 0.5 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'sym' --r 0.8 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'sym' --r 0.9 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'asym' --r 0.1 --adjustment_coefficient 0.25 --lambda_u 90
+python Train_cifar_adjusted_JSD_lu_sigmoid_approximate.py --dataset cifar100 --num_class 100 --data_path ../../Noisy_Label_Imbalance/TABASCO-main-original/datas/data/cifar-100-python --noise_mode 'asym' --r 0.3 --adjustment_coefficient 0.25 --lambda_u 90
