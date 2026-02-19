@@ -612,7 +612,7 @@ elif args.dataset == 'cifar100':
 loader = dataloader.cifar_dataloader(args.dataset, r=args.r, noise_mode=args.noise_mode,
                                      batch_size=args.batch_size, num_workers=0,
                                      root_dir=args.data_path, log=stats_log,
-                                     noise_file='%s/%.1f_%s.json' % (args.data_path, args.r, args.noise_mode))
+                                     noise_file='noise_file/%s_%s_%.1f_%d.npz' % (args.dataset, args.noise_mode, args.r, args.seed))
 
 print('| Building net')
 net1 = create_model()

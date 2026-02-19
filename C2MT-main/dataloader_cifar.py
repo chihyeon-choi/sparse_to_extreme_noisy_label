@@ -7,6 +7,7 @@ import json
 import os
 import torch
 from torchnet.meter import AUCMeter
+from Asymmetric_Noise import noisify_cifar100_asymmetric
 
             
 def unpickle(file):
@@ -58,28 +59,44 @@ class cifar_dataset(Dataset):
             self.clean_label = np.array(train_label)
 
             if os.path.exists(noise_file):
-                noise_label = json.load(open(noise_file,"r"))
+                if noise_file.endswith('.npz'):
+                    noise_data = np.load(noise_file)
+                    noise_label = noise_data['label'].astype(np.int64).tolist()
+                else:
+                    noise_label = json.load(open(noise_file,"r"))
             else:    #inject noise   
                 noise_label = []
                 idx = list(range(50000))
                 random.shuffle(idx)
                 num_noise = int(self.r*50000)            
                 noise_idx = idx[:num_noise]
-                for i in range(50000):
-                    if i in noise_idx:
-                        if noise_mode=='sym':
-                            if dataset=='cifar10': 
-                                noiselabel = random.randint(0,9)
-                            elif dataset=='cifar100':    
-                                noiselabel = random.randint(0,99)
-                            noise_label.append(noiselabel)
-                        elif noise_mode=='asym':   
-                            noiselabel = self.transition[train_label[i]]
-                            noise_label.append(noiselabel)                    
-                    else:    
-                        noise_label.append(train_label[i])   
-                print("save noisy labels to %s ..."%noise_file)        
-                json.dump(noise_label,open(noise_file,"w"))       
+                if noise_mode == 'asym' and dataset == 'cifar100':
+                    noise_label, _ = noisify_cifar100_asymmetric(train_label, self.r)
+                    noise_label = np.array(noise_label).reshape(-1).astype(np.int64).tolist()
+                else:
+                    noise_idx_set = set(noise_idx)
+                    for i in range(50000):
+                        if i in noise_idx_set:
+                            if noise_mode == 'sym':
+                                if dataset == 'cifar10':
+                                    noiselabel = random.randint(0, 9)
+                                else:
+                                    noiselabel = random.randint(0, 99)
+                                noise_label.append(noiselabel)
+                            elif noise_mode == 'asym':
+                                noiselabel = self.transition[train_label[i]]
+                                noise_label.append(noiselabel)
+                        else:
+                            noise_label.append(train_label[i])
+                print("save noisy labels to %s ..." % noise_file)
+                if noise_file.endswith('.npz'):
+                    noise_idx = np.where(np.array(noise_label) != np.array(train_label))[0]
+                    noise_dir = os.path.dirname(noise_file)
+                    if noise_dir:
+                        os.makedirs(noise_dir, exist_ok=True)
+                    np.savez(noise_file, label=np.array(noise_label).astype(np.int64), index=noise_idx)
+                else:
+                    json.dump(noise_label, open(noise_file, "w"))
             
             if self.mode == 'all':
                 self.train_data = train_data

@@ -221,7 +221,7 @@ elif args.dataset=='cifar100':
     warm_up = 30
 
 loader = dataloader.cifar_dataloader(args.dataset,r=args.r,noise_mode=args.noise_mode,batch_size=args.batch_size,num_workers=5,\
-    root_dir=args.data_path,log=stats_log,noise_file='%s/%.1f_%s.json'%(args.data_path,args.r,args.noise_mode))
+    root_dir=args.data_path,log=stats_log,noise_file='noise_file/%s_%s_%.1f_%d.npz'%(args.dataset,args.noise_mode,args.r,args.seed))
 
 print('| Building net')
 net1 = create_model()
@@ -273,5 +273,4 @@ for epoch in range(args.num_epochs+1):
         train(epoch,net2,net1,optimizer2,labeled_trainloader, unlabeled_trainloader) # train net2         
 
     test(epoch,net1,net2)  
-
 
